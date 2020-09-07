@@ -84,7 +84,7 @@ class Activity(Workflow, ModelSQL, ModelView):
     state = fields.Selection([
             ('planned', 'Planned'),
             ('done', 'Held'),
-            ('canceled', 'Not Held'),
+            ('cancelled', 'Not Held'),
             ], 'State', required=True)
     description = fields.Text('Description')
     employee = fields.Many2One('company.employee', 'Employee', required=True)
@@ -107,11 +107,11 @@ class Activity(Workflow, ModelSQL, ModelView):
             ]
         cls._transitions |= set((
                 ('planned', 'done'),
-                ('planned', 'canceled'),
+                ('planned', 'cancelled'),
                 ('done', 'planned'),
-                ('done', 'canceled'),
-                ('canceled', 'planned'),
-                ('canceled', 'done'),
+                ('done', 'cancelled'),
+                ('cancelled', 'planned'),
+                ('cancelled', 'done'),
                 ))
         cls._buttons.update({
                 'plan': {
@@ -120,7 +120,7 @@ class Activity(Workflow, ModelSQL, ModelView):
                     'depends': ['state'],
                     },
                 'cancel': {
-                    'invisible': Eval('state') == 'canceled',
+                    'invisible': Eval('state') == 'cancelled',
                     'icon': 'tryton-cancel',
                     'depends': ['state'],
                     },
@@ -133,7 +133,6 @@ class Activity(Workflow, ModelSQL, ModelView):
 
     @classmethod
     def __register__(cls, module_name):
-        TableHandler = backend.TableHandler
         cursor = Transaction().connection.cursor()
         sql_table = cls.__table__()
 
@@ -183,6 +182,12 @@ class Activity(Workflow, ModelSQL, ModelView):
                 values=['canceled'],
                 where=sql_table.state == 'not_held'))
 
+        # Migration from 5.6: rename state canceled to cancelled
+        cursor.execute(*sql_table.update(
+                [sql_table.state], ['cancelled'],
+                where=sql_table.state == 'canceled'))
+
+
     @classmethod
     @ModelView.button
     @Workflow.transition('planned')
@@ -197,7 +202,7 @@ class Activity(Workflow, ModelSQL, ModelView):
 
     @classmethod
     @ModelView.button
-    @Workflow.transition('canceled')
+    @Workflow.transition('cancelled')
     def cancel(cls, activities):
         pass
 
