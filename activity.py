@@ -17,12 +17,18 @@ from trytond.pyson import Eval
 __all__ = ['ActivityType', 'ActivityReference', 'Activity',
     'ActivityCalendarContext']
 
+# Use Tryton's default color by default
+_COLOR = '#ABD6E3'
+_RGB = (67, 84, 90)
 
 class RGB:
     def __init__(self, color=(0, 0, 0)):
         if isinstance(color, str):
             color = color.lstrip('#')
-            self.value = tuple(int(color[i:i+2], 16) for i in (0, 2, 4))
+            try:
+                self.value = tuple(int(color[i:i+2], 16) for i in (0, 2, 4))
+            except ValueError:
+                self.value = _RGB
         else:
             self.value = color
         assert isinstance(self.value, tuple)
@@ -401,8 +407,7 @@ class Activity(Workflow, ModelSQL, ModelView):
         return 'white'
 
     def get_calendar_background_color(self, name):
-        # Use Tryton's default color by default
-        color = '#ABD6E3'
+        color = _COLOR
         context = Transaction().context
         if context.get('activity_color_type', False):
             if self.activity_type and self.activity_type.color:
