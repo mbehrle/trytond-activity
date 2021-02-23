@@ -11,7 +11,7 @@ from trytond.pool import Pool
 from trytond.transaction import Transaction
 from trytond import backend
 from trytond.i18n import gettext
-from trytond.exceptions import UserError
+from trytond.exceptions import UserWarning, UserError
 from trytond.pyson import Eval
 
 __all__ = ['ActivityType', 'ActivityReference', 'Activity',
@@ -82,6 +82,7 @@ class Activity(Workflow, ModelSQL, ModelView):
     activity_type = fields.Many2One('activity.type', 'Type', required=True)
     subject = fields.Char('Subject')
     resource = fields.Reference('Resource', selection='get_resource')
+    origin = fields.Reference('Origin', selection='get_origin')
     date = fields.Date('Date', required=True, select=True)
     duration = fields.TimeDelta('Duration')
     time = fields.Time('Time')
@@ -134,6 +135,11 @@ class Activity(Workflow, ModelSQL, ModelView):
                     'invisible': Eval('state') == 'done',
                     'icon': 'tryton-ok',
                     'depends': ['state'],
+                    },
+                'createsubactivities': {
+                    # 'invisible': Eval('state') == 'done',
+                    'icon': 'tryton-next',
+                    # 'depends': ['state'],
                     },
                 })
 
@@ -205,6 +211,29 @@ class Activity(Workflow, ModelSQL, ModelView):
     @ModelView.button
     @Workflow.transition('canceled')
     def cancel(cls, activities):
+        pass
+
+    @classmethod
+    @ModelView.button
+    def createsubactivities(cls, activities):
+        pool = Pool()
+        Warning = pool.get('res.user.warning')
+        for activity in activities:
+            if('---' in activity.description):
+                aux = [x for x in activity.description.split('\n---\n') if x.strip()]
+                key = "createsubactivities%d" % len(aux)
+                if Warning.check(key):
+                    raise CreateSubActivitiesWarning(key,str("Are you sure you want to create %a tasks" % len(aux)))
+                for task in aux:
+                    act = Activity()
+                    act.subject = 'test'
+                    act.origin = activity
+                    act.employee = act.origin.employee
+                    act.date = act.origin.date
+                    act.activity_type = act.origin.activity_type
+                    act.description = task
+                    act.save()
+                
         pass
 
     @fields.depends('resource', '_parent_party.id', 'party')
@@ -322,6 +351,17 @@ class Activity(Workflow, ModelSQL, ModelView):
         for _type in Reference.search([]):
             res.append((_type.model.model, _type.model.name))
         return res
+
+    @classmethod
+    def _get_origin(cls):
+        return ['activity.activity']
+
+    @classmethod
+    def get_origin(cls):
+        pool = Pool()
+        Model = pool.get('ir.model')
+        models = Model.search([('model', 'in', cls._get_origin())])
+        return [(None, '')] + [(x.model, x.name) for x in models]
 
     @classmethod
     def create(cls, vlist):
@@ -457,3 +497,6 @@ class ActivityCalendarContext(ModelView):
     activity_color_type = fields.Boolean('Use Type Color', help='If checked, '
         'uses the color of the type of the activity as event background. '
         'Otherwise uses the color defined in the employee.')
+
+class CreateSubActivitiesWarning(UserWarning):
+    pass
