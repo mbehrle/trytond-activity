@@ -124,6 +124,15 @@ contains the full copyright notices and license terms. -->
             <field name="button" ref="activity_plan_button"/>
             <field name="group" ref="group_activity"/>
         </record>
+        <record model="ir.model.button" id="activity_split_button">
+            <field name="name">split</field>
+            <field name="string">Split</field>
+            <field name="model" search="[('model', '=', 'activity.activity')]"/>
+        </record>
+        <record model="ir.model.button-res.group" id="activity_split_button_group_activity">
+            <field name="button" ref="activity_split_button"/>
+            <field name="group" ref="group_activity"/>
+        </record>
 
         <!-- activity.reference -->
         <record model="ir.ui.view" id="activity_reference_form_view">
@@ -275,6 +284,11 @@ contains the full copyright notices and license terms. -->
             <field name="sequence" eval="20"/>
             <field name="view" ref="activity_activity_form_view"/>
             <field name="act_window" ref="act_activity_calendar"/>
+        </record>
+
+        <record model="ir.ui.icon" id="document_split_icon">
+            <field name="name">tryton-document-split</field>
+            <field name="path">icons/tryton-document-split.svg</field>
         </record>
 
         <menuitem parent="menu_activity_activity" sequence="10"

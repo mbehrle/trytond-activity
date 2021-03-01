@@ -136,10 +136,8 @@ class Activity(Workflow, ModelSQL, ModelView):
                     'icon': 'tryton-ok',
                     'depends': ['state'],
                     },
-                'createsubactivities': {
-                    # 'invisible': Eval('state') == 'done',
-                    'icon': 'tryton-next',
-                    # 'depends': ['state'],
+                'split': {
+                    'icon': 'tryton-document-split',
                     },
                 })
 
@@ -215,26 +213,19 @@ class Activity(Workflow, ModelSQL, ModelView):
 
     @classmethod
     @ModelView.button
-    def createsubactivities(cls, activities):
+    def split(cls, activities):
         pool = Pool()
         Warning = pool.get('res.user.warning')
         for activity in activities:
-            if('---' in activity.description):
-                aux = [x for x in activity.description.split('\n---\n') if x.strip()]
-                key = "createsubactivities%d" % len(aux)
-                if Warning.check(key):
-                    raise CreateSubActivitiesWarning(key,str("Are you sure you want to create %a tasks" % len(aux)))
-                for task in aux:
-                    act = Activity()
-                    act.subject = 'test'
-                    act.origin = activity
-                    act.employee = act.origin.employee
-                    act.date = act.origin.date
-                    act.activity_type = act.origin.activity_type
-                    act.description = task
-                    act.save()
-                
-        pass
+            aux = [x for x in activity.description.split('\n---\n')
+                if x.strip()]
+            key = "activity_split_%d" % len(aux)
+            if Warning.check(key):
+                raise SplitWarning(key,
+                    str("Are you sure you want to create %d activities"
+                            % len(aux)))
+            for task in aux:
+                cls.copy([activity], {'description': task})
 
     @fields.depends('resource', '_parent_party.id', 'party')
     def on_change_with_party(self, name=None):
@@ -498,5 +489,5 @@ class ActivityCalendarContext(ModelView):
         'uses the color of the type of the activity as event background. '
         'Otherwise uses the color defined in the employee.')
 
-class CreateSubActivitiesWarning(UserWarning):
+class SplitWarning(UserWarning):
     pass
