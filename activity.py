@@ -61,7 +61,7 @@ class ActivityType(sequence_ordered(), ModelSQL, ModelView):
     __name__ = "activity.type"
     name = fields.Char('Name', required=True, translate=True)
     active = fields.Boolean('Active')
-    color = fields.Char('Color')
+    color = fields.Char('Color', help='HTML color (hexadecimal)')
     default_duration = fields.TimeDelta('Default Duration')
 
     @staticmethod
