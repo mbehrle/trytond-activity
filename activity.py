@@ -389,12 +389,12 @@ class Activity(Workflow, ModelSQL, ModelView):
             dtstart = None
             if 'dtstart' in values:
                 dtstart = values['dtstart']
+                values['date'] = dtstart.date()
+                values['time'] = dtstart.time()
             elif record:
                 dtstart = record.dtstart
             if 'dtend' in values:
                 dtend = values['dtend']
-                values['date'] = dtstart.date()
-                values['time'] = dtstart.time()
                 values['duration'] = dtend - dtstart
                 return values
 
