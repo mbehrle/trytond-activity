@@ -21,6 +21,7 @@ class Configuration(
                     [Eval('context', {}).get('company', -1), None]),
                 ('code', '=', 'activity.activity'),
                 ]))
+    employee = fields.Many2One('company.employee', 'Employee', required=True)
 
     @classmethod
     def multivalue_model(cls, field):

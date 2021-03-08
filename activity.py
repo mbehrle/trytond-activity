@@ -61,7 +61,7 @@ class ActivityType(sequence_ordered(), ModelSQL, ModelView):
     __name__ = "activity.type"
     name = fields.Char('Name', required=True, translate=True)
     active = fields.Boolean('Active')
-    color = fields.Char('Color')
+    color = fields.Char('Color', help='HTML color (hexadecimal)')
     default_duration = fields.TimeDelta('Default Duration')
 
     @staticmethod
@@ -222,10 +222,13 @@ class Activity(Workflow, ModelSQL, ModelView):
             key = "activity_split_%d" % len(aux)
             if Warning.check(key):
                 raise SplitWarning(key,
-                    str("Are you sure you want to create %d activities"
+                    str("Are you sure you want to create %d activities?"
                             % len(aux)))
-            for task in aux:
-                cls.copy([activity], {'description': task})
+            for description in aux:
+                cls.copy([activity], {
+                    'description': description,
+                    'origin': activity.id,
+                    })
 
     @fields.depends('resource', '_parent_party.id', 'party')
     def on_change_with_party(self, name=None):
