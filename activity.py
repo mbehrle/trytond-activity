@@ -331,7 +331,6 @@ class Activity(Workflow, ModelSQL, ModelView):
     @classmethod
     def create(cls, vlist):
         pool = Pool()
-        Sequence = pool.get('ir.sequence')
         Config = pool.get('activity.configuration')
 
         sequence = Config(1).activity_sequence
@@ -339,7 +338,7 @@ class Activity(Workflow, ModelSQL, ModelView):
             raise UserError(gettext('activity.no_activity_sequence'))
         vlist = [x.copy() for x in vlist]
         for vals in vlist:
-            vals['code'] = Sequence.get_id(sequence.id)
+            vals['code'] = sequence.get()
             vals.update(cls.update_dates(vals))
         return super(Activity, cls).create(vlist)
 

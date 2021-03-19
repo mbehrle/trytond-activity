@@ -35,7 +35,6 @@ contains the full copyright notices and license terms. -->
         </record>
         <record model="ir.sequence.type" id="sequence_type_activity">
             <field name="name">Activity</field>
-            <field name="code">activity.activity</field>
         </record>
         <record model="ir.sequence.type-res.group"
             id="sequence_type_activity_group_admin">
@@ -50,7 +49,7 @@ contains the full copyright notices and license terms. -->
 
         <record model="ir.sequence" id="sequence_activity">
             <field name="name">Activity</field>
-            <field name="code">activity.activity</field>
+            <field name="sequence_type" ref="sequence_type_activity"/>
         </record>
     </data>
 </tryton>

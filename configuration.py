@@ -3,7 +3,7 @@
 from trytond import backend
 from trytond.model import ModelSingleton, ModelSQL, ModelView, fields
 from trytond.pool import Pool
-from trytond.pyson import Eval
+from trytond.pyson import Eval, Id
 from trytond.modules.company.model import (
     CompanyMultiValueMixin, CompanyValueMixin)
 
@@ -19,7 +19,7 @@ class Configuration(
             domain=[
                 ('company', 'in',
                     [Eval('context', {}).get('company', -1), None]),
-                ('code', '=', 'activity.activity'),
+                ('sequence_type', '=', Id('activity', 'sequence_type_activity')),
                 ]))
 
     @classmethod
@@ -45,7 +45,7 @@ class ConfigurationSequence(ModelSQL, CompanyValueMixin):
         'Activity Sequence', required=True,
         domain=[
             ('company', 'in', [Eval('company', -1), None]),
-            ('code', '=', 'activity.activity'),
+            ('sequence_type', '=', Id('activity', 'sequence_type_activity')),
             ],
         depends=['company'])
 
