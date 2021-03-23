@@ -11,6 +11,7 @@ contains the full copyright notices and license terms. -->
     <field name="party" expand="1"/>
     <field name="resource" expand="2"/>
     <field name="state"/>
+    <field name="origin" tree_invisible="1"/>
     <button name="plan" tree_invisible="1"/>
     <button name="do" tree_invisible="1"/>
     <button name="cancel" tree_invisible="1"/>

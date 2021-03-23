@@ -6,17 +6,25 @@ msgctxt "field:activity.activity,activity_type:"
 msgid "Type"
 msgstr "Tipo"
 
+msgctxt "field:activity.activity,calendar_background_color:"
+msgid "Background Color"
+msgstr "Color de fondo"
+
+msgctxt "field:activity.activity,calendar_color:"
+msgid "Color"
+msgstr "Color"
+
 msgctxt "field:activity.activity,code:"
 msgid "Code"
 msgstr "Código"
 
-msgctxt "field:activity.activity,create_date:"
-msgid "Create Date"
-msgstr "Fecha de creación"
+msgctxt "field:activity.activity,date:"
+msgid "Date"
+msgstr "Fecha"
 
-msgctxt "field:activity.activity,create_uid:"
-msgid "Create User"
-msgstr "Usuario de creación"
+msgctxt "field:activity.activity,day_busy_hours:"
+msgid "Day Busy Hours"
+msgstr "Horas ocupadas del dia"
 
 msgctxt "field:activity.activity,description:"
 msgid "Description"
@@ -30,25 +38,25 @@ msgctxt "field:activity.activity,dtstart:"
 msgid "Start Date"
 msgstr "Fecha inicial"
 
+msgctxt "field:activity.activity,duration:"
+msgid "Duration"
+msgstr "Duración"
+
 msgctxt "field:activity.activity,employee:"
 msgid "Employee"
 msgstr "Empleado"
-
-msgctxt "field:activity.activity,id:"
-msgid "ID"
-msgstr "ID"
 
 msgctxt "field:activity.activity,location:"
 msgid "Location"
 msgstr "Ubicación"
 
+msgctxt "field:activity.activity,origin:"
+msgid "Origin"
+msgstr "Orígen"
+
 msgctxt "field:activity.activity,party:"
 msgid "Party"
 msgstr "Tercero"
-
-msgctxt "field:activity.activity,rec_name:"
-msgid "Record Name"
-msgstr "Nombre"
 
 msgctxt "field:activity.activity,resource:"
 msgid "Resource"
@@ -62,41 +70,25 @@ msgctxt "field:activity.activity,subject:"
 msgid "Subject"
 msgstr "Asunto"
 
-msgctxt "field:activity.activity,write_date:"
-msgid "Write Date"
-msgstr "Fecha de modificación"
+msgctxt "field:activity.activity,summary:"
+msgid "Summary"
+msgstr "Resumen"
 
-msgctxt "field:activity.activity,write_uid:"
-msgid "Write User"
-msgstr "Usuario de modificación"
+msgctxt "field:activity.activity,time:"
+msgid "Time"
+msgstr "Hora"
+
+msgctxt "field:activity.calendar.context,activity_color_type:"
+msgid "Use Type Color"
+msgstr "Color de tipo de uso"
 
 msgctxt "field:activity.configuration,activity_sequence:"
 msgid "Activity Sequence"
 msgstr "Secuencia actividad"
 
-msgctxt "field:activity.configuration,create_date:"
-msgid "Create Date"
-msgstr "Fecha de creación"
-
-msgctxt "field:activity.configuration,create_uid:"
-msgid "Create User"
-msgstr "Usuario de creación"
-
-msgctxt "field:activity.configuration,id:"
-msgid "ID"
-msgstr "ID"
-
-msgctxt "field:activity.configuration,rec_name:"
-msgid "Record Name"
-msgstr "Nombre"
-
-msgctxt "field:activity.configuration,write_date:"
-msgid "Write Date"
-msgstr "Fecha de modificación"
-
-msgctxt "field:activity.configuration,write_uid:"
-msgid "Write User"
-msgstr "Usuario de modificación"
+msgctxt "field:activity.configuration,employee:"
+msgid "Employee"
+msgstr "Empleado"
 
 msgctxt "field:activity.configuration.sequence,activity_sequence:"
 msgid "Activity Sequence"
@@ -106,101 +98,53 @@ msgctxt "field:activity.configuration.sequence,company:"
 msgid "Company"
 msgstr "Empresa"
 
-msgctxt "field:activity.configuration.sequence,create_date:"
-msgid "Create Date"
-msgstr "Fecha de creación"
-
-msgctxt "field:activity.configuration.sequence,create_uid:"
-msgid "Create User"
-msgstr "Usuario de creación"
-
-msgctxt "field:activity.configuration.sequence,id:"
-msgid "ID"
-msgstr "ID"
-
-msgctxt "field:activity.configuration.sequence,rec_name:"
-msgid "Record Name"
-msgstr "Nombre"
-
-msgctxt "field:activity.configuration.sequence,write_date:"
-msgid "Write Date"
-msgstr "Fecha de modificación"
-
-msgctxt "field:activity.configuration.sequence,write_uid:"
-msgid "Write User"
-msgstr "Usuario de modificación"
-
-msgctxt "field:activity.reference,create_date:"
-msgid "Create Date"
-msgstr "Fecha de creación"
-
-msgctxt "field:activity.reference,create_uid:"
-msgid "Create User"
-msgstr "Usuario de creación"
-
-msgctxt "field:activity.reference,id:"
-msgid "ID"
-msgstr "ID"
-
 msgctxt "field:activity.reference,model:"
 msgid "Model"
 msgstr "Modelo"
-
-msgctxt "field:activity.reference,rec_name:"
-msgid "Record Name"
-msgstr "Nombre"
-
-msgctxt "field:activity.reference,write_date:"
-msgid "Write Date"
-msgstr "Fecha de modificación"
-
-msgctxt "field:activity.reference,write_uid:"
-msgid "Write User"
-msgstr "Usuario de modificación"
 
 msgctxt "field:activity.type,active:"
 msgid "Active"
 msgstr "Activa"
 
-msgctxt "field:activity.type,create_date:"
-msgid "Create Date"
-msgstr "Fecha de creación"
+msgctxt "field:activity.type,color:"
+msgid "Color"
+msgstr "Color"
 
-msgctxt "field:activity.type,create_uid:"
-msgid "Create User"
-msgstr "Usuario de creación"
-
-msgctxt "field:activity.type,id:"
-msgid "ID"
-msgstr "ID"
+msgctxt "field:activity.type,default_duration:"
+msgid "Default Duration"
+msgstr "Duración por defecto"
 
 msgctxt "field:activity.type,name:"
 msgid "Name"
 msgstr "Nombre"
 
-msgctxt "field:activity.type,rec_name:"
-msgid "Record Name"
-msgstr "Nombre"
-
-msgctxt "field:activity.type,sequence:"
-msgid "Sequence"
-msgstr "Secuencia"
-
-msgctxt "field:activity.type,write_date:"
-msgid "Write Date"
-msgstr "Fecha de modificación"
-
-msgctxt "field:activity.type,write_uid:"
-msgid "Write User"
-msgstr "Usuario de modificación"
+msgctxt "field:company.employee,color:"
+msgid "Color"
+msgstr "Color"
 
 msgctxt "field:party.party,activities:"
 msgid "Activities"
 msgstr "Actividades"
 
+msgctxt "help:activity.calendar.context,activity_color_type:"
+msgid ""
+"If checked, uses the color of the type of the activity as event background. "
+"Otherwise uses the color defined in the employee."
+msgstr ""
+"Si esta marcado, usa el color del tipo de actividad como fondo del evento. "
+"Si no usa el color definido en el empleado."
+
+msgctxt "help:activity.type,color:"
+msgid "HTML color (hexadecimal)"
+msgstr "Color HTML (hexadecimal)"
+
 msgctxt "model:activity.activity,name:"
 msgid "Activity"
 msgstr "Actividad"
+
+msgctxt "model:activity.calendar.context,name:"
+msgid "Activity Calendar Context"
+msgstr "Contexto Calendario Actividad"
 
 msgctxt "model:activity.configuration,name:"
 msgid "Activity Configuration"
@@ -262,8 +206,12 @@ msgctxt "model:ir.action,name:act_activity_type"
 msgid "Activity Type"
 msgstr "Tipo actividad"
 
+msgctxt "model:ir.action,name:act_split_relate"
+msgid "Sub Activities"
+msgstr "Sub-Actividades"
+
 msgctxt "model:ir.action.act_window.domain,name:"
-msgid "My Pending Activities"
+msgid "Held"
 msgstr "Realizada"
 
 msgctxt "model:ir.action.act_window.domain,name:act_activity_domain_all"
@@ -278,6 +226,10 @@ msgctxt "model:ir.action.act_window.domain,name:act_activity_domain_planned"
 msgid "Planned"
 msgstr "Planificado"
 
+msgctxt "model:ir.message,text:create_subactivities"
+msgid "Are you sure you want to create \"%(count)s\" activities?"
+msgstr "Estas seguro que quieres crear \"%(count)s\" actividades?"
+
 msgctxt "model:ir.message,text:no_activity_sequence"
 msgid ""
 "There is no activity sequence defined. Please define on in activity "
@@ -285,6 +237,22 @@ msgid ""
 msgstr ""
 "No hay una secuencia de actividad definida. Por favor definir en la "
 "configuración de la actividad."
+
+msgctxt "model:ir.model.button,string:activity_cancel_button"
+msgid "Cancel"
+msgstr "Cancela"
+
+msgctxt "model:ir.model.button,string:activity_do_button"
+msgid "Do"
+msgstr "Finalizar"
+
+msgctxt "model:ir.model.button,string:activity_plan_button"
+msgid "Plan"
+msgstr "Planificar"
+
+msgctxt "model:ir.model.button,string:activity_split_button"
+msgid "Split"
+msgstr "Dividir"
 
 msgctxt "model:ir.sequence,name:sequence_activity"
 msgid "Activity"
@@ -343,16 +311,12 @@ msgid "Planned"
 msgstr "Planificada"
 
 msgctxt "view:activity.activity:"
-msgid "Description"
-msgstr "Descripción"
+msgid "& Time:"
+msgstr "i hora"
 
 msgctxt "view:activity.activity:"
-msgid "End Time"
-msgstr "Hora final"
-
-msgctxt "view:activity.activity:"
-msgid "Start Time"
-msgstr "Hora de inicio"
+msgid "Date"
+msgstr "Fecha"
 
 msgctxt "view:activity.configuration:"
 msgid "Activity Configuration"
