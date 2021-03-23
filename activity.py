@@ -136,8 +136,8 @@ class Activity(Workflow, ModelSQL, ModelView):
                     'icon': 'tryton-ok',
                     'depends': ['state'],
                     },
-                'split': {
-                    'icon': 'tryton-document-split',
+                'activity_split': {
+                    'icon': 'tryton-activity-split',
                     },
                 })
 
@@ -212,23 +212,25 @@ class Activity(Workflow, ModelSQL, ModelView):
         pass
 
     @classmethod
-    @ModelView.button
-    def split(cls, activities):
-        pool = Pool()
-        Warning = pool.get('res.user.warning')
-        for activity in activities:
-            aux = [x for x in activity.description.split('\n---\n')
-                if x.strip()]
-            key = "activity_split_%d" % len(aux)
-            if Warning.check(key):
-                raise SplitWarning(key,
-                    str("Are you sure you want to create %d activities?"
-                            % len(aux)))
-            for description in aux:
-                cls.copy([activity], {
-                    'description': description,
-                    'origin': activity.id,
-                    })
+    @ModelView.button_action('activity.act_split_relate')
+    def activity_split(cls, activities):
+        Warning = Pool().get('res.user.warning')
+        child_activities = cls.search([
+                ('origin', 'in', activities)
+                ])
+        if not child_activities:
+            for activity in activities:
+                aux = [x for x in activity.description.split('\n---\n')
+                    if x.strip()]
+                key = "activity_split_%d" % len(aux)
+                if Warning.check(key):
+                    raise SplitWarning(key, gettext(
+                            'activity.create_subactivities', count=len(aux)))
+                for description in aux:
+                    cls.copy([activity], {
+                        'description': description,
+                        'origin': activity,
+                        })
 
     @fields.depends('resource', '_parent_party.id', 'party')
     def on_change_with_party(self, name=None):

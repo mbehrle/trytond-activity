@@ -125,7 +125,7 @@ contains the full copyright notices and license terms. -->
             <field name="group" ref="group_activity"/>
         </record>
         <record model="ir.model.button" id="activity_split_button">
-            <field name="name">split</field>
+            <field name="name">activity_split</field>
             <field name="string">Split</field>
             <field name="model" search="[('model', '=', 'activity.activity')]"/>
         </record>
@@ -286,12 +286,27 @@ contains the full copyright notices and license terms. -->
             <field name="act_window" ref="act_activity_calendar"/>
         </record>
 
-        <record model="ir.ui.icon" id="document_split_icon">
-            <field name="name">tryton-document-split</field>
-            <field name="path">icons/tryton-document-split.svg</field>
+        <record model="ir.ui.icon" id="activity_split_icon">
+            <field name="name">tryton-activity-split</field>
+            <field name="path">icons/tryton-activity-split.svg</field>
         </record>
 
         <menuitem parent="menu_activity_activity" sequence="10"
             action="act_activity_calendar" id="menu_activity_calendar"/>
+
+        <record model="ir.action.act_window" id="act_split_relate">
+            <field name="name">Sub Activities</field>
+            <field name="res_model">activity.activity</field>
+            <field name="domain"
+            eval="[If(Eval('active_ids', []) == [Eval('active_id')],
+            ('origin.id', '=', Eval('active_id'), 'activity.activity'),
+            ('origin.id', 'in', Eval('active_ids'), 'activity.activity'),
+            )]" pyson="1"/>
+        </record>
+        <record model="ir.action.keyword" id="act_split_relate_keyword">
+            <field name="keyword">form_relate</field>
+            <field name="model">activity.activity,-1</field>
+            <field name="action" ref="act_split_relate"/>
+        </record>
     </data>
 </tryton>

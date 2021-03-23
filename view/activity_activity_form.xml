@@ -47,6 +47,6 @@ contains the full copyright notices and license terms. -->
         <button name="plan"/>
         <button name="do"/>
         <button name="cancel"/>
-        <button name="split"/>
+        <button name="activity_split"/>
     </group>
 </form>

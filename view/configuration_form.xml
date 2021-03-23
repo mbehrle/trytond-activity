@@ -4,6 +4,4 @@ contains the full copyright notices and license terms. -->
 <form>
     <label name="activity_sequence"/>
     <field name="activity_sequence"/>
-    <label name="employee"/>
-    <field name="employee"/>
 </form>
