@@ -82,6 +82,7 @@ class Activity(Workflow, ModelSQL, ModelView):
     activity_type = fields.Many2One('activity.type', 'Type', required=True)
     subject = fields.Char('Subject')
     resource = fields.Reference('Resource', selection='get_resource')
+    origin = fields.Reference('Origin', selection='get_origin')
     date = fields.Date('Date', required=True, select=True)
     duration = fields.TimeDelta('Duration')
     time = fields.Time('Time')
@@ -134,6 +135,9 @@ class Activity(Workflow, ModelSQL, ModelView):
                     'invisible': Eval('state') == 'done',
                     'icon': 'tryton-ok',
                     'depends': ['state'],
+                    },
+                'activity_split': {
+                    'icon': 'tryton-activity-split',
                     },
                 })
 
@@ -193,7 +197,6 @@ class Activity(Workflow, ModelSQL, ModelView):
                 [sql_table.state], ['cancelled'],
                 where=sql_table.state == 'canceled'))
 
-
     @classmethod
     @ModelView.button
     @Workflow.transition('planned')
@@ -211,6 +214,27 @@ class Activity(Workflow, ModelSQL, ModelView):
     @Workflow.transition('cancelled')
     def cancel(cls, activities):
         pass
+
+    @classmethod
+    @ModelView.button_action('activity.act_split_relate')
+    def activity_split(cls, activities):
+        Warning = Pool().get('res.user.warning')
+        child_activities = cls.search([
+                ('origin', 'in', activities)
+                ])
+        if not child_activities:
+            for activity in activities:
+                aux = [x for x in activity.description.split('\n---\n')
+                    if x.strip()]
+                key = "activity_split_%d" % len(aux)
+                if Warning.check(key):
+                    raise SplitWarning(key, gettext(
+                            'activity.create_subactivities', count=len(aux)))
+                for description in aux:
+                    cls.copy([activity], {
+                        'description': description,
+                        'origin': activity,
+                        })
 
     @fields.depends('resource', '_parent_party.id', 'party')
     def on_change_with_party(self, name=None):
@@ -329,6 +353,17 @@ class Activity(Workflow, ModelSQL, ModelView):
         return res
 
     @classmethod
+    def _get_origin(cls):
+        return ['activity.activity']
+
+    @classmethod
+    def get_origin(cls):
+        pool = Pool()
+        Model = pool.get('ir.model')
+        models = Model.search([('model', 'in', cls._get_origin())])
+        return [(None, '')] + [(x.model, x.name) for x in models]
+
+    @classmethod
     def create(cls, vlist):
         pool = Pool()
         Config = pool.get('activity.configuration')
@@ -359,12 +394,12 @@ class Activity(Workflow, ModelSQL, ModelView):
             dtstart = None
             if 'dtstart' in values:
                 dtstart = values['dtstart']
+                values['date'] = dtstart.date()
+                values['time'] = dtstart.time()
             elif record:
                 dtstart = record.dtstart
             if 'dtend' in values:
                 dtend = values['dtend']
-                values['date'] = dtstart.date()
-                values['time'] = dtstart.time()
                 values['duration'] = dtend - dtstart
                 return values
 
@@ -461,3 +496,6 @@ class ActivityCalendarContext(ModelView):
     activity_color_type = fields.Boolean('Use Type Color', help='If checked, '
         'uses the color of the type of the activity as event background. '
         'Otherwise uses the color defined in the employee.')
+
+class SplitWarning(UserWarning):
+    pass

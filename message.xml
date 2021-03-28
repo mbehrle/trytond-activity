@@ -6,5 +6,8 @@ this repository contains the full copyright notices and license terms. -->
       <record model="ir.message" id="no_activity_sequence">
           <field name="text">There is no activity sequence defined. Please define on in activity configuration.</field>
       </record>
+      <record model="ir.message" id="create_subactivities">
+          <field name="text">Are you sure you want to create "%(count)s" activities?</field>
+      </record>
     </data>
 </tryton>

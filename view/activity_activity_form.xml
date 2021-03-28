@@ -33,7 +33,9 @@ contains the full copyright notices and license terms. -->
     <label name="resource"/>
     <field name="resource"/>
     <label name="location"/>
-    <field name="location" colspan="3"/>
+    <field name="location"/>
+    <label name="origin"/>
+    <field name="origin"/>
     <notebook>
         <page name="description">
             <field name="description" colspan="4" height="400"/>
@@ -45,5 +47,6 @@ contains the full copyright notices and license terms. -->
         <button name="plan"/>
         <button name="do"/>
         <button name="cancel"/>
+        <button name="activity_split"/>
     </group>
 </form>
