@@ -407,6 +407,8 @@ class Activity(Workflow, ModelSQL, ModelView):
 
         date = values.get('date')
         time = values.get('time')
+        if not date or not time:
+            return values
         duration = values.get('duration')
         dtstart = datetime.datetime.combine(date, time or datetime.time())
         dtstart = cls.local_to_utc(dtstart)
