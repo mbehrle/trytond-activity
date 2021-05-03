@@ -397,7 +397,10 @@ class Activity(Workflow, ModelSQL, ModelView):
                 dtstart = record.dtstart
             if 'dtend' in values:
                 dtend = values['dtend']
-                values['duration'] = dtend - dtstart
+                if dtend and dtstart:
+                    values['duration'] = dtend - dtstart
+                else:
+                    values['duration'] = None
                 return values
 
         if record:
