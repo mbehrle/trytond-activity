@@ -93,6 +93,7 @@ class Activity(Workflow, ModelSQL, ModelView):
             ('done', 'Held'),
             ('canceled', 'Not Held'),
             ], 'State', required=True)
+    state_string = state.translated('state')
     description = fields.Text('Description')
     employee = fields.Many2One('company.employee', 'Employee', required=True)
     location = fields.Char('Location')
