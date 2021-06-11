@@ -53,7 +53,7 @@ contains the full copyright notices and license terms. -->
         <record model="ir.action.act_window.domain" id="act_activity_domain_pending">
           <field name="name">Planned Today</field>
           <field name="sequence" eval="10"/>
-          <field name="domain" eval="[('dtstart', '&lt;', DateTime(hour=0, minute=0, second=0, microsecond=0, delta_days=1)),
+          <field name="domain" eval="[('date', '&lt;=', Date()),
               ('state', '=', 'planned')]" pyson="1"/>
           <field name="act_window" ref="act_activity_activity"/>
           <field name="count" eval="True"/>
