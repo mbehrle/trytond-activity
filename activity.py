@@ -11,7 +11,7 @@ from trytond.pool import Pool
 from trytond.transaction import Transaction
 from trytond import backend
 from trytond.i18n import gettext
-from trytond.exceptions import UserError
+from trytond.exceptions import UserError, UserWarning
 from trytond.pyson import Eval
 
 
@@ -224,10 +224,11 @@ class Activity(Workflow, ModelSQL, ModelView):
             for activity in activities:
                 aux = [x for x in activity.description.split('\n---\n')
                     if x.strip()]
-                key = "activity_split_%d" % len(aux)
+                key = 'activity_split.%d' % len(aux)
                 if Warning.check(key):
-                    raise SplitWarning(key, gettext(
-                            'activity.create_subactivities', count=len(aux)))
+                    raise SplitWarning(key,
+                        gettext('activity.create_subactivities',
+                            count=len(aux)))
                 for description in aux:
                     cls.copy([activity], {
                         'description': description,
