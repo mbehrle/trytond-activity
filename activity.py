@@ -5,7 +5,7 @@ import pytz
 from sql import Null, Cast
 from sql.aggregate import Sum
 
-from trytond.model import (Workflow, ModelSQL, ModelView, fields,
+from trytond.model import (Workflow, ModelSQL, ModelView, DeactivableMixin, fields,
     sequence_ordered)
 from trytond.pool import Pool
 from trytond.transaction import Transaction
@@ -54,17 +54,12 @@ def timedelta_to_string(interval):
     return '%02d:%02d' % (hours, minutes)
 
 
-class ActivityType(sequence_ordered(), ModelSQL, ModelView):
+class ActivityType(sequence_ordered(), DeactivableMixin, ModelSQL, ModelView):
     'Activity Type'
     __name__ = "activity.type"
     name = fields.Char('Name', required=True, translate=True)
-    active = fields.Boolean('Active')
     color = fields.Char('Color', help='HTML color (hexadecimal)')
     default_duration = fields.TimeDelta('Default Duration')
-
-    @staticmethod
-    def default_active():
-        return True
 
 
 class ActivityReference(ModelSQL, ModelView):
