@@ -61,6 +61,7 @@ class ActivityType(sequence_ordered(), ModelSQL, ModelView):
     active = fields.Boolean('Active')
     color = fields.Char('Color', help='HTML color (hexadecimal)')
     default_duration = fields.TimeDelta('Default Duration')
+    default_description = fields.Text("Default Description")
 
     @staticmethod
     def default_active():
@@ -283,10 +284,13 @@ class Activity(Workflow, ModelSQL, ModelView):
                 return resource.party.id
         return None
 
-    @fields.depends('activity_type', 'duration')
+    @fields.depends('activity_type', '_parent_activity_type.default_description',
+        'duration', 'description')
     def on_change_activity_type(self):
         if not self.activity_type:
             return
+        if not self.description and self.activity_type.default_description:
+            self.description = self.activity_type.default_description
         if not self.duration is None:
             return
         self.duration = self.activity_type.default_duration
