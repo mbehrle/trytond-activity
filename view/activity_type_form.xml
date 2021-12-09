@@ -12,4 +12,7 @@ contains the full copyright notices and license terms. -->
     <field name="color"/>
     <label name="sequence"/>
     <field name="sequence"/>
+    <newline/>
+    <separator name="default_description" colspan="6"/>
+    <field name="default_description" colspan="6"/>
 </form>
