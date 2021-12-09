@@ -110,6 +110,10 @@ msgctxt "field:activity.type,color:"
 msgid "Color"
 msgstr "Color"
 
+msgctxt "field:activity.type,default_description:"
+msgid "Default description"
+msgstr "Descripció per defecte"
+
 msgctxt "field:activity.type,default_duration:"
 msgid "Default Duration"
 msgstr "Duració per defecte"
