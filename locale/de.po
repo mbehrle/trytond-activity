@@ -1,0 +1,312 @@
+#
+msgid ""
+msgstr "Content-Type: text/plain; charset=utf-8\n"
+
+msgctxt "field:activity.activity,activity_type:"
+msgid "Type"
+msgstr "Typ"
+
+msgctxt "field:activity.activity,calendar_background_color:"
+msgid "Background Color"
+msgstr "Hintergrundsfarbe"
+
+msgctxt "field:activity.activity,calendar_color:"
+msgid "Color"
+msgstr "Farbe"
+
+msgctxt "field:activity.activity,code:"
+msgid "Code"
+msgstr "Code"
+
+msgctxt "field:activity.activity,date:"
+msgid "Date"
+msgstr "Datum"
+
+msgctxt "field:activity.activity,day_busy_hours:"
+msgid "Day Busy Hours"
+msgstr "Beschäftigungszeit pro Tag (h)"
+
+msgctxt "field:activity.activity,description:"
+msgid "Description"
+msgstr "Beschreibung"
+
+msgctxt "field:activity.activity,dtend:"
+msgid "End Date"
+msgstr "Enddatum"
+
+msgctxt "field:activity.activity,dtstart:"
+msgid "Start Date"
+msgstr "Startdatum"
+
+msgctxt "field:activity.activity,duration:"
+msgid "Duration"
+msgstr "Dauer"
+
+msgctxt "field:activity.activity,employee:"
+msgid "Employee"
+msgstr "Mitarbeiter"
+
+msgctxt "field:activity.activity,location:"
+msgid "Location"
+msgstr "Ort"
+
+msgctxt "field:activity.activity,origin:"
+msgid "Origin"
+msgstr "Herkunft"
+
+msgctxt "field:activity.activity,party:"
+msgid "Party"
+msgstr "Partei"
+
+msgctxt "field:activity.activity,resource:"
+msgid "Resource"
+msgstr "Ressource"
+
+msgctxt "field:activity.activity,state:"
+msgid "State"
+msgstr "Status"
+
+msgctxt "field:activity.activity,subject:"
+msgid "Subject"
+msgstr "Betreff"
+
+msgctxt "field:activity.activity,summary:"
+msgid "Summary"
+msgstr "Kurzbeschreibung"
+
+msgctxt "field:activity.activity,time:"
+msgid "Time"
+msgstr "Zeit"
+
+msgctxt "field:activity.calendar.context,activity_color_type:"
+msgid "Use Type Color"
+msgstr "Typfarbe verwenden"
+
+msgctxt "field:activity.configuration,activity_sequence:"
+msgid "Activity Sequence"
+msgstr "Nummernkreis Wiedervorlage"
+
+msgctxt "field:activity.configuration.sequence,activity_sequence:"
+msgid "Activity Sequence"
+msgstr "Nummernkreis Wiedervorlage"
+
+msgctxt "field:activity.configuration.sequence,company:"
+msgid "Company"
+msgstr "Unternehmen"
+
+msgctxt "field:activity.reference,model:"
+msgid "Model"
+msgstr "Modell"
+
+msgctxt "field:activity.type,color:"
+msgid "Color"
+msgstr "Farbe"
+
+msgctxt "field:activity.type,default_description:"
+msgid "Default Description"
+msgstr "Standardbeschreibung"
+
+msgctxt "field:activity.type,default_duration:"
+msgid "Default Duration"
+msgstr "Standarddauer"
+
+msgctxt "field:activity.type,name:"
+msgid "Name"
+msgstr "Name"
+
+msgctxt "field:company.employee,color:"
+msgid "Color"
+msgstr "Farbe"
+
+msgctxt "field:party.party,activities:"
+msgid "Activities"
+msgstr "Wiedervorlagen"
+
+msgctxt "help:activity.calendar.context,activity_color_type:"
+msgid ""
+"If checked, uses the color of the type of the activity as event background. "
+"Otherwise uses the color defined in the employee."
+msgstr ""
+"Bei Aktivierung wird die Farbe der Wiedervorlage für den Hintergrund "
+"benutzt. Ansonsten wird die für den Mitarbeiter eingestellte Farbe "
+"verwendet."
+
+msgctxt "help:activity.type,color:"
+msgid "HTML color (hexadecimal)"
+msgstr "HTML Farbe (hexadecimal)"
+
+msgctxt "model:activity.activity,name:"
+msgid "Activity"
+msgstr "Wiedervorlage"
+
+msgctxt "model:activity.calendar.context,name:"
+msgid "Activity Calendar Context"
+msgstr "Wiedervorlage Kalenderkontext"
+
+msgctxt "model:activity.configuration,name:"
+msgid "Activity Configuration"
+msgstr "Wiedervorlage Konfiguration"
+
+msgctxt "model:activity.configuration.sequence,name:"
+msgid "Activity Sequence Configuration"
+msgstr "Nummernkreis Wiedervorlage Einstellung"
+
+msgctxt "model:activity.reference,name:"
+msgid "Activity Reference"
+msgstr "Wiedervorlagenbezug"
+
+msgctxt "model:activity.type,name:"
+msgid "Activity Type"
+msgstr "Wiedervorlagentyp"
+
+msgctxt "model:activity.type,name:incoming_call_type"
+msgid "Incoming Call"
+msgstr "Eingehender Anruf"
+
+msgctxt "model:activity.type,name:incoming_email_type"
+msgid "Incoming Email"
+msgstr "Eingehende E-Mail"
+
+msgctxt "model:activity.type,name:meeting_type"
+msgid "Meeting"
+msgstr "Meeting"
+
+msgctxt "model:activity.type,name:outgoing_call_type"
+msgid "Outgoing Call"
+msgstr "Ausgehender Anruf"
+
+msgctxt "model:activity.type,name:outgoing_email_type"
+msgid "Outgoing Email"
+msgstr "Ausgehende E-Mail"
+
+msgctxt "model:ir.action,name:act_activity_activity"
+msgid "Activity"
+msgstr "Wiedervorlage"
+
+msgctxt "model:ir.action,name:act_activity_calendar"
+msgid "Activities"
+msgstr "Wiedervorlagen"
+
+msgctxt "model:ir.action,name:act_activity_configuration"
+msgid "Configuration"
+msgstr "Einstellungen"
+
+msgctxt "model:ir.action,name:act_activity_form"
+msgid "Activities"
+msgstr "Wiedervorlagen"
+
+msgctxt "model:ir.action,name:act_activity_reference"
+msgid "Activity Reference"
+msgstr "Wiedervorlagenbezüge"
+
+msgctxt "model:ir.action,name:act_activity_type"
+msgid "Activity Type"
+msgstr "Wiedervorlagentyp"
+
+msgctxt "model:ir.action,name:act_split_relate"
+msgid "Sub Activities"
+msgstr "Untergeordnete Wiedervorlagen"
+
+msgctxt "model:ir.action.act_window.domain,name:act_activity_domain_all"
+msgid "All"
+msgstr "Alle"
+
+msgctxt "model:ir.action.act_window.domain,name:act_activity_domain_pending"
+msgid "Planned Today"
+msgstr "Heute geplant"
+
+msgctxt "model:ir.action.act_window.domain,name:act_activity_domain_planned"
+msgid "Planned"
+msgstr "Geplant"
+
+msgctxt "model:ir.message,text:create_subactivities"
+msgid "Are you sure you want to create \"%(count)s\" activities?"
+msgstr "Es sollen \"%(count)s\" Wiedervorlagen erstellt werden. Fortfahren?"
+
+msgctxt "model:ir.message,text:no_activity_sequence"
+msgid ""
+"There is no activity sequence defined. Please define on in activity "
+"configuration."
+msgstr ""
+"Es ist kein Nummernkreis für Wiedervorlagen eingestellt. Bitte nehmen Sie "
+"das in den Einstellungen vor."
+
+msgctxt "model:ir.model.button,string:activity_cancel_button"
+msgid "Cancel"
+msgstr "Abbrechen"
+
+msgctxt "model:ir.model.button,string:activity_do_button"
+msgid "Do"
+msgstr "Ausführen"
+
+msgctxt "model:ir.model.button,string:activity_plan_button"
+msgid "Plan"
+msgstr "Planen"
+
+msgctxt "model:ir.model.button,string:activity_split_button"
+msgid "Split"
+msgstr "Aufteilen"
+
+msgctxt "model:ir.sequence,name:sequence_activity"
+msgid "Activity"
+msgstr "Wiedervorlage"
+
+msgctxt "model:ir.sequence.type,name:sequence_type_activity"
+msgid "Activity"
+msgstr "Wiedervorlage"
+
+msgctxt "model:ir.ui.menu,name:menu_activity"
+msgid "Activities"
+msgstr "Wiedervorlagen"
+
+msgctxt "model:ir.ui.menu,name:menu_activity_activity"
+msgid "Activities"
+msgstr "Wiedervorlagen"
+
+msgctxt "model:ir.ui.menu,name:menu_activity_calendar"
+msgid "Activities"
+msgstr "Wiedervorlagen"
+
+msgctxt "model:ir.ui.menu,name:menu_activity_configuration"
+msgid "Configuration"
+msgstr "Einstellungen"
+
+msgctxt "model:ir.ui.menu,name:menu_activity_reference"
+msgid "Activity Reference"
+msgstr "Wiedervorlagenbezüge"
+
+msgctxt "model:ir.ui.menu,name:menu_activity_type"
+msgid "Activity Type"
+msgstr "Wiedervorlagentyp"
+
+msgctxt "model:ir.ui.menu,name:menu_configuration"
+msgid "Configuration"
+msgstr "Einstellungen"
+
+msgctxt "model:res.group,name:group_activity"
+msgid "Activities"
+msgstr "Wiedervorlagen"
+
+msgctxt "model:res.group,name:group_activity_admin"
+msgid "Activities Administration"
+msgstr "Wiedervorlagen Administration"
+
+msgctxt "selection:activity.activity,state:"
+msgid "Held"
+msgstr "Angehalten"
+
+msgctxt "selection:activity.activity,state:"
+msgid "Not Held"
+msgstr "Nicht angehalten"
+
+msgctxt "selection:activity.activity,state:"
+msgid "Planned"
+msgstr "Geplant"
+
+msgctxt "view:activity.activity:"
+msgid "& Time:"
+msgstr "& Zeit:"
+
+msgctxt "view:activity.activity:"
+msgid "Date"
+msgstr "Datum"
