@@ -97,6 +97,8 @@ class Activity(Workflow, ModelSQL, ModelView):
             'get_calendar_background_color')
     day_busy_hours = fields.Function(fields.TimeDelta('Day Busy Hours'),
         'get_day_busy_hours')
+    company = fields.Function(fields.Many2One('company.company', "Company"),
+        'get_company', searcher='search_company')
 
     @classmethod
     def __setup__(cls):
@@ -494,6 +496,13 @@ class Activity(Workflow, ModelSQL, ModelView):
             res[activity.id] = sums.get((activity.employee.id, activity.date),
                 datetime.timedelta())
         return res
+
+    def get_company(self, name):
+        return self.employee.company.id if self.employee.company else None
+
+    @classmethod
+    def search_company(cls, name, clause):
+        return [('employee.%s' % name,) + tuple(clause[1:])]
 
 
 class ActivityCalendarContext(ModelView):

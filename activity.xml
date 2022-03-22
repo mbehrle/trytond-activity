@@ -90,6 +90,18 @@ contains the full copyright notices and license terms. -->
             <field name="perm_delete" eval="True"/>
         </record>
 
+        <record model="ir.rule.group" id="rule_group_activity_companies">
+            <field name="name">User in companies</field>
+            <field name="model" search="[('model', '=', 'activity.activity')]"/>
+            <field name="global_p" eval="True"/>
+        </record>
+        <record model="ir.rule" id="rule_activity_companies">
+            <field name="domain"
+                eval="[('company', 'in', Eval('companies', []))]"
+                pyson="1"/>
+            <field name="rule_group" ref="rule_group_activity_companies"/>
+        </record>
+
         <!-- activity.calendar.context -->
         <record model="ir.ui.view" id="activity_calendar_context_form_view">
             <field name="model">activity.calendar.context</field>
