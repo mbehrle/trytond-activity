@@ -90,7 +90,11 @@ class Activity(Workflow, ModelSQL, ModelView):
     description = fields.Text('Description')
     employee = fields.Many2One('company.employee', 'Employee', required=True)
     location = fields.Char('Location')
-    party = fields.Many2One('party.party', 'Party')
+    party = fields.Many2One('party.party', "Party",
+        context={
+            'company': Eval('company'),
+            },
+        depends=['company'])
     summary = fields.Function(fields.Char('Summary'), 'get_summary')
     calendar_color = fields.Function(fields.Char('Color'), 'get_calendar_color')
     calendar_background_color = fields.Function(fields.Char('Background Color'),
