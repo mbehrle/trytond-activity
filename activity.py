@@ -102,7 +102,7 @@ class Activity(Workflow, ModelSQL, ModelView):
     day_busy_hours = fields.Function(fields.TimeDelta('Day Busy Hours'),
         'get_day_busy_hours')
     company = fields.Function(fields.Many2One('company.company', "Company"),
-        'get_company', searcher='search_company')
+        'on_change_with_company', searcher='search_company')
 
     @classmethod
     def __setup__(cls):
@@ -501,8 +501,9 @@ class Activity(Workflow, ModelSQL, ModelView):
                 datetime.timedelta())
         return res
 
-    def get_company(self, name):
-        return self.employee.company.id if self.employee.company else None
+    @fields.depends('employee')
+    def on_change_with_company(self, name=None):
+        return self.employee.company.id if self.employee and self.employee.company else None
 
     @classmethod
     def search_company(cls, name, clause):
