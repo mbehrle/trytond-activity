@@ -145,18 +145,16 @@ class Activity(Workflow, ModelSQL, ModelView):
     def __register__(cls, module_name):
         cursor = Transaction().connection.cursor()
         sql_table = cls.__table__()
+        table = cls.__table_handler__(module_name)
 
         code_exists = True
         date_exists = True
         if backend.TableHandler.table_exist(cls._table):
-            table = backend.TableHandler(cls, module_name)
             code_exists = table.column_exist('code')
             date_exists = table.column_exist('date')
 
-
         super(Activity, cls).__register__(module_name)
 
-        table = backend.TableHandler(cls, module_name)
         # Migration from 3.2: Remove type and direction fields
         table.not_null_action('type', action='remove')
         table.not_null_action('direction', action='remove')
