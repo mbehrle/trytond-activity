@@ -72,16 +72,16 @@ class ActivityReference(ModelSQL, ModelView):
 class Activity(Workflow, ModelSQL, ModelView):
     'Activity'
     __name__ = "activity.activity"
-    code = fields.Char('Code', readonly=True, select=True)
+    code = fields.Char('Code', readonly=True)
     activity_type = fields.Many2One('activity.type', 'Type', required=True)
     subject = fields.Char('Subject')
     resource = fields.Reference('Resource', selection='get_resource')
     origin = fields.Reference('Origin', selection='get_origin')
-    date = fields.Date('Date', required=True, select=True)
+    date = fields.Date('Date', required=True)
     duration = fields.TimeDelta('Duration')
     time = fields.Time('Time')
-    dtstart = fields.DateTime('Start Date', select=True)
-    dtend = fields.DateTime('End Date', select=True)
+    dtstart = fields.DateTime('Start Date')
+    dtend = fields.DateTime('End Date')
     state = fields.Selection([
             ('planned', 'Planned'),
             ('done', 'Held'),
