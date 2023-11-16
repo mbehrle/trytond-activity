@@ -92,7 +92,7 @@ class Activity(Workflow, ModelSQL, ModelView):
     location = fields.Char('Location')
     party = fields.Many2One('party.party', "Party",
         context={
-            'company': Eval('company'),
+            'company': Eval('company', -1),
             },
         depends=['company'])
     summary = fields.Function(fields.Char('Summary'), 'get_summary')
