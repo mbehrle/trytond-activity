@@ -46,8 +46,7 @@ class ConfigurationSequence(ModelSQL, CompanyValueMixin):
         domain=[
             ('company', 'in', [Eval('company', -1), None]),
             ('sequence_type', '=', Id('activity', 'sequence_type_activity')),
-            ],
-        depends=['company'])
+            ])
 
     @classmethod
     def __register__(cls, module_name):
