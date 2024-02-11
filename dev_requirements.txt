@@ -1,0 +1,8 @@
+# Install development requirements
+
+tox
+coverage
+coverage-badge
+flake8
+
+-r requirements.txt

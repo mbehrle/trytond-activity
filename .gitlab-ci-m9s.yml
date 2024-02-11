@@ -1,0 +1,3 @@
+include:
+  - project: mbsolutions/common/ci-templates
+    file: templates/tryton-module.yml

@@ -1,0 +1,83 @@
+stages:
+  - test
+  - pages
+
+.test_base: &test_base
+  stage: test
+  image: python:3.11
+
+  # Pip's cache doesn't store the python packages
+  # https://pip.pypa.io/en/stable/reference/pip_install/#caching
+  #
+  # If you want to also cache the installed packages, you have to install
+  # them in a virtualenv and cache it as well.
+  cache:
+    paths:
+      - .cache/pip
+      - venv/ 
+
+  # Change pip's cache directory to be inside the project directory since we can
+  # only cache local items.
+  variables:
+    PIP_CACHE_DIR: "$CI_PROJECT_DIR/.cache/pip"
+
+  before_script:
+    - python -V  # Print out python version for debugging
+    - pip install virtualenv
+    - virtualenv venv
+    - source venv/bin/activate
+    - pip install -r dev_requirements.txt
+      #only:
+      #- releases/all
+      #- releases/docker
+      #- releases/python
+      #- staging
+      #- nightly
+
+test-postgres:
+  <<: *test_base
+  variables:
+    POSTGRESQL_URI: postgresql://postgres@postgresql:5432/
+    POSTGRES_HOST_AUTH_METHOD: trust
+  services:
+    - name: postgres
+      alias: postgresql
+      command: ["-c", "fsync=off", "-c", "synchronous_commit=off", "-c", "full_page_writes=off"]
+  script:
+    - tox -e py311-postgresql -vv -- -v
+  tags:
+    - postgres
+
+test-sqlite:
+  <<: *test_base
+  script:
+    - tox -e py311-sqlite -vv -- -v
+    - coverage html
+    - coverage report -m
+    # 20131213: coverage-badge not Python 3.12 ready
+    - coverage-badge
+
+  coverage: '/TOTAL.+ ([0-9]{1,3}%)/'
+      
+  artifacts:
+    when: always
+    paths:
+      - htmlcov
+    expire_in: 30 days
+
+pages:
+  stage: pages
+  #dependencies:
+  #   - test-sqlite
+  script:
+    # delete everything in the current public folder
+    # and replace with code coverage HTML report
+    - mkdir -p public
+    - rm -rf public/*
+    - cp -r htmlcov/* public/
+  artifacts:
+    paths:
+      - public
+    expire_in: 30 days
+  only:
+    - develop
