@@ -1,0 +1,28 @@
+branches: [ '7.0', 'mbs-7.0', test ]
+
+pipeline:
+    notify_mail:
+      image: mbsolutions/debian_curl:latest
+      commands:
+        - .woodpecker/mail_curl.sh
+      secrets: [ MAIL_USER, MAIL_PASS, MAIL_HOST, MAIL_FROM, MAIL_RECIPIENTS ]
+      ignore_failure: true
+      when:
+        status: [ changed, failure ]
+
+    notify_matrix:
+        image: plugins/matrix
+        settings:
+          roomid:
+            from_secret: bot_room
+          username:
+            from_secret: bot_user
+          password:
+            from_secret: bot_pass
+          ignore_failure: true
+
+depends_on:
+  - test
+
+runs_on: [ success, failure ]
+#skip_clone: true
