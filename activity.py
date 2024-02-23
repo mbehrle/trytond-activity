@@ -275,6 +275,10 @@ class Activity(Workflow, ModelSQL, ModelView):
         return Activity._resource_party(resource)
 
     @staticmethod
+    def default_activity_type():
+        return Transaction().context.get('default_activity_type')
+
+    @staticmethod
     def _resource_party(resource):
         if not resource or resource.id < 0:
             return
