@@ -7,7 +7,7 @@ contains the full copyright notices and license terms. -->
     <label name="code"/>
     <field name="code"/>
     <label name="activity_type"/>
-    <field name="activity_type" widget="selection"/>
+    <field name="activity_type"/>
     <label name="employee"/>
     <field name="employee"/>
     <group id="date_time_label" col="2" xexpand="0" xfill="0">
