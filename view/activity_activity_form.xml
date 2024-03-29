@@ -38,7 +38,7 @@ contains the full copyright notices and license terms. -->
     <field name="origin"/>
     <notebook>
         <page name="description">
-            <field name="description" colspan="4" height="400"/>
+            <field name="description" colspan="4" height="400" widget="block"/>
         </page>
     </notebook>
     <label name="state"/>

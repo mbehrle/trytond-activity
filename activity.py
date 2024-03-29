@@ -2,6 +2,7 @@
 # copyright notices and license terms.
 import datetime
 import pytz
+import re
 from sql import Null, Cast
 from sql.aggregate import Sum
 
@@ -13,11 +14,15 @@ from trytond import backend
 from trytond.i18n import gettext
 from trytond.exceptions import UserError, UserWarning
 from trytond.pyson import Eval
+from trytond.modules.widgets import tools
 
 
 # Use Tryton's default color by default
 _COLOR = '#ABD6E3'
 _RGB = (67, 84, 90)
+
+def create_anchors(text):
+    return re.sub(r"((http|https):\/\/\S*)", r'<a href="\1" target="_blank" rel="noopener">\1</a>', text)
 
 class RGB:
     def __init__(self, color=(0, 0, 0)):
@@ -62,6 +67,16 @@ class ActivityType(sequence_ordered(), DeactivableMixin, ModelSQL, ModelView):
     default_duration = fields.TimeDelta('Default Duration')
     default_description = fields.Text("Default Description")
 
+    @classmethod
+    def __register__(cls, module_name):
+        cursor = Transaction().connection.cursor()
+        sql_table = cls.__table__()
+
+        super().__register__(module_name)
+
+        # Migration for activity descriptions to EditorJS
+        tools.migrate_field(sql_table, sql_table.default_description, 'text')
+
 
 class ActivityReference(ModelSQL, ModelView):
     'Activity Reference'
@@ -96,6 +111,7 @@ class Activity(Workflow, ModelSQL, ModelView):
             },
         depends=['company'])
     summary = fields.Function(fields.Char('Summary'), 'get_summary')
+    html = fields.Function(fields.Binary('HTML'), 'get_html')
     calendar_color = fields.Function(fields.Char('Color'), 'get_calendar_color')
     calendar_background_color = fields.Function(fields.Char('Background Color'),
             'get_calendar_background_color')
@@ -155,22 +171,6 @@ class Activity(Workflow, ModelSQL, ModelView):
 
         super(Activity, cls).__register__(module_name)
 
-        # Migration from 3.2: Remove type and direction fields
-        table.not_null_action('type', action='remove')
-        table.not_null_action('direction', action='remove')
-
-        # Migration from 3.2: Add code field
-        if (not code_exists and table.column_exist('type') and
-                table.column_exist('direction')):
-            cursor.execute(*sql_table.update(
-                    columns=[sql_table.code],
-                    values=[sql_table.id],
-                    where=sql_table.code == Null))
-            table.not_null_action('code', action='add')
-
-        # Migration from 3.4.1: subject is no more required
-        table.not_null_action('subject', 'remove')
-
         # Migration from 5.2
         if not date_exists:
             cursor.execute(*sql_table.update(
@@ -194,6 +194,9 @@ class Activity(Workflow, ModelSQL, ModelView):
         cursor.execute(*sql_table.update(
                 [sql_table.state], ['cancelled'],
                 where=sql_table.state == 'canceled'))
+
+        # Migration for activity descriptions to EditorJS
+        tools.migrate_field(sql_table, sql_table.description, 'text')
 
     @classmethod
     @ModelView.button
@@ -392,6 +395,9 @@ class Activity(Workflow, ModelSQL, ModelView):
                 args.append([activity])
                 args.append(cls.update_dates(values, activity))
         super().write(*args)
+
+    def get_html(self, name):
+        return tools.js_to_html(self.description)
 
     @classmethod
     def update_dates(cls, values, record=None):
