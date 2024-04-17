@@ -73,7 +73,7 @@ contains the full copyright notices and license terms. -->
         </record>
 
         <record model="ir.model.access" id="access_activity_activity">
-            <field name="model" search="[('model', '=', 'activity.activity')]"/>
+            <field name="model">activity.activity</field>
             <field name="perm_read" eval="True"/>
             <field name="perm_write" eval="False"/>
             <field name="perm_create" eval="False"/>
@@ -82,7 +82,7 @@ contains the full copyright notices and license terms. -->
 
         <record model="ir.model.access"
                 id="access_activity_activity_group_activity">
-            <field name="model" search="[('model', '=', 'activity.activity')]"/>
+            <field name="model">activity.activity</field>
             <field name="group" ref="group_activity"/>
             <field name="perm_read" eval="True"/>
             <field name="perm_write" eval="True"/>
@@ -92,7 +92,7 @@ contains the full copyright notices and license terms. -->
 
         <record model="ir.rule.group" id="rule_group_activity_companies">
             <field name="name">User in companies</field>
-            <field name="model" search="[('model', '=', 'activity.activity')]"/>
+            <field name="model">activity.activity</field>
             <field name="global_p" eval="True"/>
         </record>
         <record model="ir.rule" id="rule_activity_companies">
@@ -112,7 +112,7 @@ contains the full copyright notices and license terms. -->
         <record model="ir.model.button" id="activity_do_button">
             <field name="name">do</field>
             <field name="string">Do</field>
-            <field name="model" search="[('model', '=', 'activity.activity')]"/>
+            <field name="model">activity.activity</field>
         </record>
         <record model="ir.model.button-res.group" id="activity_do_button_group_activity">
             <field name="button" ref="activity_do_button"/>
@@ -121,7 +121,7 @@ contains the full copyright notices and license terms. -->
         <record model="ir.model.button" id="activity_cancel_button">
             <field name="name">cancel</field>
             <field name="string">Cancel</field>
-            <field name="model" search="[('model', '=', 'activity.activity')]"/>
+            <field name="model">activity.activity</field>
         </record>
         <record model="ir.model.button-res.group" id="activity_cancel_button_group_activity">
             <field name="button" ref="activity_cancel_button"/>
@@ -130,7 +130,7 @@ contains the full copyright notices and license terms. -->
         <record model="ir.model.button" id="activity_plan_button">
             <field name="name">plan</field>
             <field name="string">Plan</field>
-            <field name="model" search="[('model', '=', 'activity.activity')]"/>
+            <field name="model">activity.activity</field>
         </record>
         <record model="ir.model.button-res.group" id="activity_plan_button_group_activity">
             <field name="button" ref="activity_plan_button"/>
@@ -139,7 +139,7 @@ contains the full copyright notices and license terms. -->
         <record model="ir.model.button" id="activity_split_button">
             <field name="name">activity_split</field>
             <field name="string">Split</field>
-            <field name="model" search="[('model', '=', 'activity.activity')]"/>
+            <field name="model">activity.activity</field>
         </record>
         <record model="ir.model.button-res.group" id="activity_split_button_group_activity">
             <field name="button" ref="activity_split_button"/>
@@ -176,7 +176,7 @@ contains the full copyright notices and license terms. -->
         </record>
 
         <record model="ir.model.access" id="access_activity_reference">
-            <field name="model" search="[('model', '=', 'activity.reference')]"/>
+            <field name="model">activity.reference</field>
             <field name="perm_read" eval="True"/>
             <field name="perm_write" eval="False"/>
             <field name="perm_create" eval="False"/>
@@ -184,7 +184,7 @@ contains the full copyright notices and license terms. -->
         </record>
 
         <record model="ir.model.access" id="access_activity_reference_admin">
-            <field name="model" search="[('model', '=', 'activity.reference')]"/>
+            <field name="model">activity.reference</field>
             <field name="group" ref="group_activity_admin"/>
             <field name="perm_read" eval="True"/>
             <field name="perm_write" eval="True"/>
@@ -222,7 +222,7 @@ contains the full copyright notices and license terms. -->
         </record>
 
         <record model="ir.model.access" id="access_activity_type">
-            <field name="model" search="[('model', '=', 'activity.type')]"/>
+            <field name="model">activity.type</field>
             <field name="perm_read" eval="True"/>
             <field name="perm_write" eval="False"/>
             <field name="perm_create" eval="False"/>
@@ -230,7 +230,7 @@ contains the full copyright notices and license terms. -->
         </record>
 
         <record model="ir.model.access" id="access_activity_type_admin">
-            <field name="model" search="[('model', '=', 'activity.type')]"/>
+            <field name="model">activity.type</field>
             <field name="group" ref="group_activity_admin"/>
             <field name="perm_read" eval="True"/>
             <field name="perm_write" eval="True"/>
