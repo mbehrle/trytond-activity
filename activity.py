@@ -147,10 +147,8 @@ class Activity(Workflow, ModelSQL, ModelView):
         sql_table = cls.__table__()
         table = cls.__table_handler__(module_name)
 
-        code_exists = True
         date_exists = True
         if backend.TableHandler.table_exist(cls._table):
-            code_exists = table.column_exist('code')
             date_exists = table.column_exist('date')
 
         super(Activity, cls).__register__(module_name)
@@ -297,7 +295,8 @@ class Activity(Workflow, ModelSQL, ModelView):
     def on_change_activity_type(self):
         if not self.activity_type:
             return
-        if not self.description and self.activity_type.default_description:
+        description = self.description
+        if not description and self.activity_type.default_description:
             self.description = self.activity_type.default_description
         if not self.duration is None:
             return
