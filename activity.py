@@ -69,7 +69,6 @@ class ActivityType(sequence_ordered(), DeactivableMixin, ModelSQL, ModelView):
 
     @classmethod
     def __register__(cls, module_name):
-        cursor = Transaction().connection.cursor()
         sql_table = cls.__table__()
 
         super().__register__(module_name)
@@ -163,10 +162,8 @@ class Activity(Workflow, ModelSQL, ModelView):
         sql_table = cls.__table__()
         table = cls.__table_handler__(module_name)
 
-        code_exists = True
         date_exists = True
         if backend.TableHandler.table_exist(cls._table):
-            code_exists = table.column_exist('code')
             date_exists = table.column_exist('date')
 
         super(Activity, cls).__register__(module_name)
@@ -304,7 +301,6 @@ class Activity(Workflow, ModelSQL, ModelView):
         if description:
             description = tools.js_to_text(self.description)
         if not description and self.activity_type.default_description:
-            v = tools.js_to_text(self.description)
             self.description = self.activity_type.default_description
         if not self.duration is None:
             return
