@@ -300,7 +300,11 @@ class Activity(Workflow, ModelSQL, ModelView):
     def on_change_activity_type(self):
         if not self.activity_type:
             return
-        if not self.description and self.activity_type.default_description:
+        description = self.description
+        if description:
+            description = tools.js_to_text(self.description)
+        if not description and self.activity_type.default_description:
+            v = tools.js_to_text(self.description)
             self.description = self.activity_type.default_description
         if not self.duration is None:
             return
