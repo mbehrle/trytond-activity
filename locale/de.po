@@ -84,11 +84,11 @@ msgstr "Typfarbe verwenden"
 
 msgctxt "field:activity.configuration,activity_sequence:"
 msgid "Activity Sequence"
-msgstr "Nummernkreis Wiedervorlage"
+msgstr "Nummernkreis Aktivität"
 
 msgctxt "field:activity.configuration.sequence,activity_sequence:"
 msgid "Activity Sequence"
-msgstr "Nummernkreis Wiedervorlage"
+msgstr "Nummernkreis Aktivität"
 
 msgctxt "field:activity.configuration.sequence,company:"
 msgid "Company"
@@ -120,14 +120,14 @@ msgstr "Farbe"
 
 msgctxt "field:party.party,activities:"
 msgid "Activities"
-msgstr "Wiedervorlagen"
+msgstr "Aktivitäten"
 
 msgctxt "help:activity.calendar.context,activity_color_type:"
 msgid ""
 "If checked, uses the color of the type of the activity as event background. "
 "Otherwise uses the color defined in the employee."
 msgstr ""
-"Bei Aktivierung wird die Farbe der Wiedervorlage für den Hintergrund "
+"Bei Aktivierung wird die Farbe der Aktivität für den Hintergrund "
 "benutzt. Ansonsten wird die für den Mitarbeiter eingestellte Farbe "
 "verwendet."
 
@@ -137,27 +137,27 @@ msgstr "HTML Farbe (hexadecimal)"
 
 msgctxt "model:activity.activity,name:"
 msgid "Activity"
-msgstr "Wiedervorlage"
+msgstr "Aktivität"
 
 msgctxt "model:activity.calendar.context,name:"
 msgid "Activity Calendar Context"
-msgstr "Wiedervorlage Kalenderkontext"
+msgstr "Aktivität Kalenderkontext"
 
 msgctxt "model:activity.configuration,name:"
 msgid "Activity Configuration"
-msgstr "Wiedervorlage Konfiguration"
+msgstr "Aktivität Konfiguration"
 
 msgctxt "model:activity.configuration.sequence,name:"
 msgid "Activity Sequence Configuration"
-msgstr "Nummernkreis Wiedervorlage Einstellung"
+msgstr "Nummernkreis Aktivität Einstellung"
 
 msgctxt "model:activity.reference,name:"
 msgid "Activity Reference"
-msgstr "Wiedervorlagenbezug"
+msgstr "Aktivitätenbezug"
 
 msgctxt "model:activity.type,name:"
 msgid "Activity Type"
-msgstr "Wiedervorlagentyp"
+msgstr "Aktivitätentyp"
 
 msgctxt "model:activity.type,name:incoming_call_type"
 msgid "Incoming Call"
@@ -181,11 +181,11 @@ msgstr "Ausgehende E-Mail"
 
 msgctxt "model:ir.action,name:act_activity_activity"
 msgid "Activity"
-msgstr "Wiedervorlage"
+msgstr "Aktivität"
 
 msgctxt "model:ir.action,name:act_activity_calendar"
 msgid "Activities"
-msgstr "Wiedervorlagen"
+msgstr "Aktivitäten"
 
 msgctxt "model:ir.action,name:act_activity_configuration"
 msgid "Configuration"
@@ -193,19 +193,19 @@ msgstr "Einstellungen"
 
 msgctxt "model:ir.action,name:act_activity_form"
 msgid "Activities"
-msgstr "Wiedervorlagen"
+msgstr "Aktivitäten"
 
 msgctxt "model:ir.action,name:act_activity_reference"
 msgid "Activity Reference"
-msgstr "Wiedervorlagenbezüge"
+msgstr "Aktivitätenbezüge"
 
 msgctxt "model:ir.action,name:act_activity_type"
 msgid "Activity Type"
-msgstr "Wiedervorlagentyp"
+msgstr "Aktivitätentyp"
 
 msgctxt "model:ir.action,name:act_split_relate"
 msgid "Sub Activities"
-msgstr "Untergeordnete Wiedervorlagen"
+msgstr "Untergeordnete Aktivitäten"
 
 msgctxt "model:ir.action.act_window.domain,name:act_activity_domain_all"
 msgid "All"
@@ -221,14 +221,14 @@ msgstr "Geplant"
 
 msgctxt "model:ir.message,text:create_subactivities"
 msgid "Are you sure you want to create \"%(count)s\" activities?"
-msgstr "Es sollen \"%(count)s\" Wiedervorlagen erstellt werden. Fortfahren?"
+msgstr "Es sollen \"%(count)s\" Aktivitäten erstellt werden. Fortfahren?"
 
 msgctxt "model:ir.message,text:no_activity_sequence"
 msgid ""
 "There is no activity sequence defined. Please define on in activity "
 "configuration."
 msgstr ""
-"Es ist kein Nummernkreis für Wiedervorlagen eingestellt. Bitte nehmen Sie "
+"Es ist kein Nummernkreis für Aktivitäten eingestellt. Bitte nehmen Sie "
 "das in den Einstellungen vor."
 
 msgctxt "model:ir.model.button,string:activity_cancel_button"
@@ -237,7 +237,7 @@ msgstr "Abbrechen"
 
 msgctxt "model:ir.model.button,string:activity_do_button"
 msgid "Do"
-msgstr "Ausführen"
+msgstr "Durchführen"
 
 msgctxt "model:ir.model.button,string:activity_plan_button"
 msgid "Plan"
@@ -249,23 +249,23 @@ msgstr "Aufteilen"
 
 msgctxt "model:ir.sequence,name:sequence_activity"
 msgid "Activity"
-msgstr "Wiedervorlage"
+msgstr "Aktivität"
 
 msgctxt "model:ir.sequence.type,name:sequence_type_activity"
 msgid "Activity"
-msgstr "Wiedervorlage"
+msgstr "Aktivität"
 
 msgctxt "model:ir.ui.menu,name:menu_activity"
 msgid "Activities"
-msgstr "Wiedervorlagen"
+msgstr "Aktivitäten"
 
 msgctxt "model:ir.ui.menu,name:menu_activity_activity"
 msgid "Activities"
-msgstr "Wiedervorlagen"
+msgstr "Aktivitäten"
 
 msgctxt "model:ir.ui.menu,name:menu_activity_calendar"
 msgid "Activities"
-msgstr "Wiedervorlagen"
+msgstr "Aktivitäten"
 
 msgctxt "model:ir.ui.menu,name:menu_activity_configuration"
 msgid "Configuration"
@@ -273,11 +273,11 @@ msgstr "Einstellungen"
 
 msgctxt "model:ir.ui.menu,name:menu_activity_reference"
 msgid "Activity Reference"
-msgstr "Wiedervorlagenbezüge"
+msgstr "Aktivitätenbezüge"
 
 msgctxt "model:ir.ui.menu,name:menu_activity_type"
 msgid "Activity Type"
-msgstr "Wiedervorlagentyp"
+msgstr "Aktivitätentyp"
 
 msgctxt "model:ir.ui.menu,name:menu_configuration"
 msgid "Configuration"
@@ -285,19 +285,19 @@ msgstr "Einstellungen"
 
 msgctxt "model:res.group,name:group_activity"
 msgid "Activities"
-msgstr "Wiedervorlagen"
+msgstr "Aktivitäten"
 
 msgctxt "model:res.group,name:group_activity_admin"
 msgid "Activities Administration"
-msgstr "Wiedervorlagen Administration"
+msgstr "Aktivitäten Administration"
 
 msgctxt "selection:activity.activity,state:"
 msgid "Held"
-msgstr "Angehalten"
+msgstr "Durchgeführt"
 
 msgctxt "selection:activity.activity,state:"
 msgid "Not Held"
-msgstr "Nicht angehalten"
+msgstr "Nicht durchgeführt"
 
 msgctxt "selection:activity.activity,state:"
 msgid "Planned"
