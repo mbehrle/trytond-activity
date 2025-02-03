@@ -151,23 +151,7 @@ class Activity(Workflow, ModelSQL, ModelView):
         if backend.TableHandler.table_exist(cls._table):
             date_exists = table.column_exist('date')
 
-        super(Activity, cls).__register__(module_name)
-
-        # Migration from 3.2: Remove type and direction fields
-        table.not_null_action('type', action='remove')
-        table.not_null_action('direction', action='remove')
-
-        # Migration from 3.2: Add code field
-        if (not code_exists and table.column_exist('type') and
-                table.column_exist('direction')):
-            cursor.execute(*sql_table.update(
-                    columns=[sql_table.code],
-                    values=[sql_table.id],
-                    where=sql_table.code == Null))
-            table.not_null_action('code', action='add')
-
-        # Migration from 3.4.1: subject is no more required
-        table.not_null_action('subject', 'remove')
+        super().__register__(module_name)
 
         # Migration from 5.2
         if not date_exists:
